@@ -1,4 +1,4 @@
-package com.connectmedica.net {
+package com.connectmedica.unipass.net {
 	import com.adobe.serialization.json.JSON;
 	
 	import flash.events.Event;

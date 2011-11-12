@@ -1,4 +1,4 @@
-package com.connectmedica.net {
+package com.connectmedica.unipass.net {
 	import flash.net.URLRequest;
 	
 	public class UnipassRequest extends AbstractUnipassRequest {

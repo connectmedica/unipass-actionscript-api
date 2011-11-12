@@ -1,4 +1,4 @@
-package com.connectmedica.data {
+package com.connectmedica.unipass.data {
 	
 	/**
 	 * VO to hold information about the

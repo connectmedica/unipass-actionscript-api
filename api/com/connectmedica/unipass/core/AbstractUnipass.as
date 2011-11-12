@@ -1,8 +1,8 @@
-package com.connectmedica.core {
-	import com.connectmedica.data.UnipassAuthResponse;
-	import com.connectmedica.data.UnipassSession;
-	import com.connectmedica.net.UnipassRequest;
-	import com.connectmedica.utils.IResultParser;
+package com.connectmedica.unipass.core {
+	import com.connectmedica.unipass.data.UnipassAuthResponse;
+	import com.connectmedica.unipass.data.UnipassSession;
+	import com.connectmedica.unipass.net.UnipassRequest;
+	import com.connectmedica.unipass.utils.IResultParser;
 	
 	import flash.utils.Dictionary;
 

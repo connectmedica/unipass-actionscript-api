@@ -1,6 +1,6 @@
 package com.connectmedica {
-    import com.connectmedica.core.AbstractUnipass;
-    import com.connectmedica.data.UnipassAuthResponse;
+    import com.connectmedica.unipass.core.AbstractUnipass;
+    import com.connectmedica.unipass.data.UnipassAuthResponse;
     
     public class Unipass extends AbstractUnipass {
         /**

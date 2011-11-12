@@ -1,4 +1,4 @@
-package com.connectmedica.core {
+package com.connectmedica.unipass.core {
 	
 	/**
 	 * Constant class that stores all URLs
