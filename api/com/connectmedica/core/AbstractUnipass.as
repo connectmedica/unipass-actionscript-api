@@ -1,6 +1,8 @@
 package com.connectmedica.core {
 	import com.connectmedica.data.UnipassAuthResponse;
 	import com.connectmedica.data.UnipassSession;
+	import com.connectmedica.net.UnipassRequest;
+	import com.connectmedica.utils.IResultParser;
 	
 	import flash.utils.Dictionary;
 
@@ -79,7 +81,7 @@ package com.connectmedica.core {
 		):void {
 			method = (method.indexOf('/') != 0) ? '/' + method : method;
 			
-			if (accessToken){
+			if (accessToken) {
 				if (params == null) { params = {}; }
 				if (params.access_token == null) { params.access_token = accessToken; }
 			}
@@ -108,13 +110,15 @@ package com.connectmedica.core {
 		 */
 		protected function handleRequestLoad(target:UnipassRequest):void {
 			var resultCallback:Function = openRequests[target];
+			
 			if (resultCallback === null) {
 				delete openRequests[target];
 			}
 			
 			if (target.success) {
 				var data:Object = ('data' in target.data) ? target.data.data : target.data;
-				resultHash[data] = target.data; //keeps a reference to the entire raw object Facebook returns (including paging, etc.)
+				
+				resultHash[data] = target.data; //keeps a reference to the entire raw object Unipass returns (including paging, etc.)
 				if (data.hasOwnProperty("error_code")) {
 					resultCallback(null, data);
 				} else {

@@ -51,21 +51,19 @@ package com.connectmedica {
          * Initializes this Unipass singleton with your Client ID using OAuth 2.0.
          * You must call this method first.
          *
-         * @param applicationId The application ID you created at
-         * http://www.facebook.com/developers/apps.php
+         * @param clientId The client ID you created at
+         * https://www.stworzonedlazdrowia.pl
          *
          * @param callback (Optional)
          * Method to call when initialization is complete.
          * The handler must have the signature of callback(success:Object, fail:Object);
-         * Success will be a FacebookSession if successful, or null if not.
+         * Success will be a UnipassSession if successful, or null if not.
          *
          * @param options (Optional)
          * Object of options used to instantiate the underling Javascript SDK
          * 
          * @param accessToken (Optional)
-         * A valid Facebook access token. If you have a previously saved access token, you can pass it in here.
-         *
-         * @see http://developers.facebook.com/docs/reference/javascript/FB.init
+         * A valid Unipass access token. If you have a previously saved access token, you can pass it in here.
          *
          */
         public static function init(clientId:String,
@@ -77,28 +75,24 @@ package com.connectmedica {
         }
         
 		/**
-		 * Makes a new request on the Facebook Graph API.
+		 * Makes a new request on the Unipass API.
 		 *
 		 * @param method The method to call on the Graph API.
-		 * For example, to load the user's current friends, pass: /me/friends
+		 * For example, to load the user's profile data, pass: /me
 		 *
 		 * @param calllback Method that will be called when this request is complete
 		 * The handler must have the signature of callback(result:Object, fail:Object);
-		 * On success, result will be the object data returned from Facebook.
+		 * On success, result will be the object data returned from Unipass.
 		 * On fail, result will be null and fail will contain information about the error.
 		 *
-		 * @param params Any parameters to pass to Facebook.
-		 * For example, you can pass {file:myPhoto, message:'Some message'};
-		 * this will upload a photo to Facebook.
+		 * @param params Any parameters to pass to Unipass.
+		 * For example, you can pass {name:'Some name', message:'Some message'};
+		 * 
 		 * @param requestMethod
-		 * The URLRequestMethod used to send values to Facebook.
-		 * The graph API follows correct Request method conventions.
+		 * The URLRequestMethod used to send values to Unipss.
+		 * The Unipass API follows correct Request method conventions.
 		 * GET will return data from Facebook.
 		 * POST will send data to Facebook.
-		 * DELETE will delete an object from Facebook.
-		 *
-		 * @see flash.net.URLRequestMethod
-		 * @see http://developers.facebook.com/docs/api
 		 *
 		 */
 		public static function api(method:String,
@@ -106,11 +100,7 @@ package com.connectmedica {
 								   params:* = null,
 								   requestMethod:String = 'GET'
 		):void {
-			getInstance().api(method,
-				callback,
-				params,
-				requestMethod
-			);
+			getInstance().api(method, callback, params, requestMethod);
 		}
 		
         // Protected methods ///////////////////////////////////////////////////////////////////////////////////////////

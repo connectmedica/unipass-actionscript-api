@@ -1,4 +1,5 @@
 # Flash Builder files
+bin/
 .settings/
 .actionScriptProperties
 .flexLibProperties
