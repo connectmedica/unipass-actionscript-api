@@ -1,0 +1,5 @@
+# Flash Builder files
+.settings/
+.actionScriptProperties
+.flexLibProperties
+.project
