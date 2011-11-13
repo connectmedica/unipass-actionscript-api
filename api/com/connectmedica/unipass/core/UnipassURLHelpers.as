@@ -14,7 +14,7 @@ package com.connectmedica.unipass.core {
 		public static function authorizationURL(variables:URLVariables):String {
 			var authorizationPath:String = UnipassURLDefaults.AUTHORIZATION_PATH;
 			
-			if (variables.toString() !== "") { authorizationPath += '?' + variables.toString(); }
+			if (variables.toString() != "") { authorizationPath += '?' + variables.toString(); }
 			
 			return join(UnipassURLDefaults.UNIPASS_URL, authorizationPath); 
 		}
@@ -29,7 +29,7 @@ package com.connectmedica.unipass.core {
 			var path:String = paths[0];
 			
 			for(var i:uint = 1; i < paths.length; i++) {
-				if (paths[i] === null || paths[i] === "") continue;
+				if (paths[i] == null || paths[i] == "") continue;
 				
 				var p:String = paths[i] as String;
 				if (path.charAt(path.length) != '/' || p.charAt(0) != '/') { path += '/'; }

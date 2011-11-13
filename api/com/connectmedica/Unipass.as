@@ -1,6 +1,9 @@
 package com.connectmedica {
     import com.connectmedica.unipass.core.AbstractUnipass;
+    import com.connectmedica.unipass.core.UnipassURLHelpers;
     import com.connectmedica.unipass.data.UnipassAuthResponse;
+    
+    import flash.system.Security;
     
     public class Unipass extends AbstractUnipass {
         /**
@@ -38,6 +41,8 @@ package com.connectmedica {
                 throw new Error('Unipass is an singleton and cannot be instantiated.');
             }
             
+			setSecurity();
+			
             //jsBridge = new UnipassJSBridge(); //create an instance
             
             //jsCallbacks = {};
@@ -105,6 +110,19 @@ package com.connectmedica {
 		
         // Protected methods ///////////////////////////////////////////////////////////////////////////////////////////
 		
+		/**
+		 * @private
+		 *
+		 */
+		protected static function getInstance():Unipass {
+			if (_instance == null) {
+				_canInit = true;
+				_instance = new Unipass();
+				_canInit = false;
+			}
+			return _instance;
+		}
+		
         /**
          * @private
          *
@@ -144,18 +162,16 @@ package com.connectmedica {
                 _initCallback = null;
             }
         }
+		
+		/**
+		 * @private
+		 * 
+		 */
+		protected function setSecurity():void {
+			Security.allowDomain("*");
+			Security.allowInsecureDomain("*");
+			Security.loadPolicyFile(UnipassURLHelpers.unipassURL("/crossdomain.xml"));
+		}
         
-        /**
-         * @private
-         *
-         */
-        protected static function getInstance():Unipass {
-            if (_instance == null) {
-                _canInit = true;
-                _instance = new Unipass();
-                _canInit = false;
-            }
-            return _instance;
-        }
     }
 }

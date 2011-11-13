@@ -11,7 +11,7 @@ package com.connectmedica.unipass.core {
 		 * Main URL to Unipass.
 		 *
 		 */
-		public static var UNIPASS_URL:String = 'https://test.stworzonedlazdrowia.pl';
+		public static var UNIPASS_URL:String = 'https://www.stworzonedlazdrowia.pl';
 
 		/**
 		 * Path for calling RESTful API methods.
