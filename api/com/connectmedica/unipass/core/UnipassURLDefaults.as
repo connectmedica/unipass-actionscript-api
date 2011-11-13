@@ -5,7 +5,7 @@ package com.connectmedica.unipass.core {
 	 * You may change these if your requests need to go though a proxy server.
 	 *
 	 */
-	public class UnipassURLDefaults {
+	public final class UnipassURLDefaults {
 		
 		/**
 		 * Main URL to Unipass.

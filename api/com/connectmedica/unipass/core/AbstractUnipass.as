@@ -91,17 +91,7 @@ package com.connectmedica.unipass.core {
 			//We need to hold on to a reference or the GC might clear this during the load.
 			openRequests[req] = callback;
 			
-			req.call(apiUrl(method), requestMethod, handleRequestLoad, params);
-		}
-		
-		/**
-		 * @private
-		 * 
-		 */
-		protected function apiUrl(method:String):String {
-			method = (method.indexOf('/') != 0) ? '/' + method : method;
-			
-			return UnipassURLDefaults.UNIPASS_URL + UnipassURLDefaults.API_PATH + method;
+			req.call(UnipassURLHelpers.apiURL(method), requestMethod, handleRequestLoad, params);
 		}
 		
 		/**
