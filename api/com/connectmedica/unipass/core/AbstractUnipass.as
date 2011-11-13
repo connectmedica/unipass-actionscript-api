@@ -79,8 +79,6 @@ package com.connectmedica.unipass.core {
 							   params:* = null,
 							   requestMethod:String = 'GET'
 		):void {
-			method = (method.indexOf('/') != 0) ? '/' + method : method;
-			
 			if (accessToken) {
 				if (params == null) { params = {}; }
 				if (params.oauth_token == null) { params.oauth_token = accessToken; }
@@ -93,7 +91,17 @@ package com.connectmedica.unipass.core {
 			//We need to hold on to a reference or the GC might clear this during the load.
 			openRequests[req] = callback;
 			
-			req.call(UnipassURLDefaults.API_URL + method, requestMethod, handleRequestLoad, params);
+			req.call(apiUrl(method), requestMethod, handleRequestLoad, params);
+		}
+		
+		/**
+		 * @private
+		 * 
+		 */
+		protected function apiUrl(method:String):String {
+			method = (method.indexOf('/') != 0) ? '/' + method : method;
+			
+			return UnipassURLDefaults.UNIPASS_URL + UnipassURLDefaults.API_PATH + method;
 		}
 		
 		/**

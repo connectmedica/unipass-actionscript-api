@@ -1,44 +1,43 @@
 package com.connectmedica.unipass.core {
 	
 	/**
-	 * Constant class that stores all URLs
-	 * used when communicating with Unipass.
+	 * Constant class that stores all URLs used to communicate with Unipass.
 	 * You may change these if your requests need to go though a proxy server.
 	 *
 	 */
 	public class UnipassURLDefaults {
 		
 		/**
-		 * URL for calling old-style RESTful API methods.
+		 * Main URL to Unipass.
 		 *
 		 */
 		public static var UNIPASS_URL:String = 'https://test.stworzonedlazdrowia.pl';
 
 		/**
-		 * URL for calling old-style RESTful API methods.
+		 * Path for calling RESTful API methods.
 		 *
 		 */
-		public static var API_URL:String = UNIPASS_URL + '/api/1';
+		public static var API_PATH:String = '/api/1';
 		
 		/**
-		 * OAUTH autherization URL,
-		 * used in Unipass.as to authenicate users.
+		 * OAuth 2.0 authorization path, used in Unipass.as to authenicate users.
 		 *
 		 */
-		public static var AUTH_URL:String = UNIPASS_URL + '/oauth2/authorize';
+		public static var AUTHORIZATION_PATH:String = '/oauth2/authorize';
 		
 		/**
-		 * OAUTH autherization URL,
-		 * used in Unipass.as to authenicate users.
+		 * OAuth 2.0 token path, used to exchange authorization code for access token.
 		 *
 		 */
-		public static var TOKEN_URL:String = UNIPASS_URL + '/oauth2/token';
+		public static var TOKEN_PATH:String = '/oauth2/token';
 		
 		/**
-		 * Used for AIR applications only.
-		 * URL to re-direct to after a successfull login to Unipass.
+		 * Path to redirect to after a successfull login to Unipass.
+		 * 
+		 * For use in desktop/mobile (AIR) applications.
 		 *
 		 */
-		public static var LOGIN_SUCCESS_URL:String = UNIPASS_URL + '/oauth2/login_success.html';
+		public static var LOGIN_SUCCESS_PATH:String = '/oauth2/login_success.html';
+		
 	}
 }
