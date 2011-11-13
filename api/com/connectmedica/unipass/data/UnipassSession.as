@@ -34,7 +34,7 @@ package com.connectmedica.unipass.data {
 		public var expireDate:Date;
 		
 		/**
-		 * Oauth access token for Facebook graph services.
+		 * Oauth access token for Unipass services.
 		 *
 		 */
 		public var accessToken:String;

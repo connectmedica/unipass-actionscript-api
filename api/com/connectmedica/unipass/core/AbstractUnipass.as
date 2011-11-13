@@ -83,7 +83,7 @@ package com.connectmedica.unipass.core {
 			
 			if (accessToken) {
 				if (params == null) { params = {}; }
-				if (params.access_token == null) { params.access_token = accessToken; }
+				if (params.oauth_token == null) { params.oauth_token = accessToken; }
 			}
 			
 			var req:UnipassRequest = new UnipassRequest();

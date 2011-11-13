@@ -8,7 +8,7 @@ package com.connectmedica.unipass.net {
 		}
 		
 		/**
-		 * Makes a request to the Facebook Graph API.
+		 * Makes a request to the Unipass API.
 		 *
 		 */
 		public function call(url:String,

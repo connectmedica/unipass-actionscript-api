@@ -38,7 +38,7 @@ package com.connectmedica {
                 throw new Error('Unipass is an singleton and cannot be instantiated.');
             }
             
-            //jsBridge = new FacebookJSBridge(); //create an instance
+            //jsBridge = new UnipassJSBridge(); //create an instance
             
             //jsCallbacks = {};
             
@@ -77,7 +77,7 @@ package com.connectmedica {
 		/**
 		 * Makes a new request on the Unipass API.
 		 *
-		 * @param method The method to call on the Graph API.
+		 * @param method The method to call on the Unipass API.
 		 * For example, to load the user's profile data, pass: /me
 		 *
 		 * @param calllback Method that will be called when this request is complete
@@ -91,8 +91,8 @@ package com.connectmedica {
 		 * @param requestMethod
 		 * The URLRequestMethod used to send values to Unipss.
 		 * The Unipass API follows correct Request method conventions.
-		 * GET will return data from Facebook.
-		 * POST will send data to Facebook.
+		 * GET will return data from Unipass.
+		 * POST will send data to Unipass.
 		 *
 		 */
 		public static function api(method:String,
@@ -121,7 +121,6 @@ package com.connectmedica {
             ExternalInterface.addCallback('logout', handleLogout);
             ExternalInterface.addCallback('uiResponse', handleUI);
             */
-            
             _initCallback = callback;
             
             this.clientId = clientId;

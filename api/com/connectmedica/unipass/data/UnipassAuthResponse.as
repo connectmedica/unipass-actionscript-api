@@ -1,13 +1,11 @@
-package com.connectmedica.unipass.data
-{
+package com.connectmedica.unipass.data {
 	
 	/**
 	 * VO to hold information about the
 	 * current logged in user and their auth response.
 	 *
 	 */
-	public class UnipassAuthResponse
-	{
+	public class UnipassAuthResponse {
 		
 		/**
 		 * The current user's ID.
@@ -22,13 +20,12 @@ package com.connectmedica.unipass.data
 		public var expireDate:Date;
 		
 		/**
-		 * OAuth 2.0 access token for Facebook graph services.
+		 * OAuth 2.0 access token for Unipass API.
 		 *
 		 */
 		public var accessToken:String;
 		
-		public function UnipassAuthResponse()
-		{
+		public function UnipassAuthResponse() {
 		}
 		
 		/**
@@ -51,5 +48,6 @@ package com.connectmedica.unipass.data
 		public function toString():String {
 			return '[userId:' + uid + ']';
 		}
+		
 	}
 }
