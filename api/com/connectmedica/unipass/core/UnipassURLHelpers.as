@@ -11,13 +11,22 @@ package com.connectmedica.unipass.core {
 			return join(UnipassURLDefaults.UNIPASS_URL, UnipassURLDefaults.API_PATH, method);
 		}
 
-		public static function authorizationURL(variables:URLVariables):String {
+		public static function authorizationURL(params:Object):String {
 			var authorizationPath:String = UnipassURLDefaults.AUTHORIZATION_PATH;
-			
-			if (variables.toString() != "") { authorizationPath += '?' + variables.toString(); }
+            var urlVariables:URLVariables = new URLVariables();
+            
+            for (var key:String in params) {
+                urlVariables[key] = params[key];
+            }
+            
+			if (params.toString() != "") { authorizationPath += '?' + urlVariables.toString(); }
 			
 			return join(UnipassURLDefaults.UNIPASS_URL, authorizationPath); 
 		}
+        
+        public static function get loginSuccessURL():String {
+            return join(UnipassURLDefaults.UNIPASS_URL, UnipassURLDefaults.LOGIN_SUCCESS_PATH);
+        }
 		
 		// Protected Methods ///////////////////////////////////////////////////////////////////////////////////////////
 
@@ -32,7 +41,7 @@ package com.connectmedica.unipass.core {
 				if (paths[i] == null || paths[i] == "") continue;
 				
 				var p:String = paths[i] as String;
-				if (path.charAt(path.length) != '/' || p.charAt(0) != '/') { path += '/'; }
+				if (path.charAt(path.length) != '/' && p.charAt(0) != '/') { path += '/'; }
 				path += p;
 			}
 			
