@@ -11,7 +11,6 @@ ActionScript 3 SDK for Unipass API
    * Create new **Flex Library Project**
    * Project name: `unipass-actionscript-api`
    * Configuration: **Generic library**
-   * Do NOT include Adobre AIR libraries
    * Main src folder: `api`
 
 2. Mobile Library 
