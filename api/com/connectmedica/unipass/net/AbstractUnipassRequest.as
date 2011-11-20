@@ -113,10 +113,7 @@ package com.connectmedica.unipass.net {
 			return _data;
 		}
 		
-		public function callURL(callback:Function, 
-								url:String = "", 
-								locale:String = null
-		):void {			
+		public function callURL(callback:Function, url:String = "", locale:String = null):void {			
 			_callback = callback;
 			urlRequest = new URLRequest(url.length ? url : _url);
 			
@@ -202,9 +199,7 @@ package com.connectmedica.unipass.net {
 		 * @private
 		 *
 		 */
-		protected function handleDataLoad(result:Object,
-										  dispatchCompleteEvent:Boolean = true
-		):void {
+		protected function handleDataLoad(result:Object, dispatchCompleteEvent:Boolean = true):void {
 			_rawResult = result as String;
 			_success = true;
 			

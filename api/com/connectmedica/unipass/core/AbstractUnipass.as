@@ -75,11 +75,7 @@ package com.connectmedica.unipass.core {
 		 * @private
 		 *
 		 */
-		protected function api(method:String,
-							   callback:Function = null,
-							   params:* = null,
-							   requestMethod:String = URLRequestMethod.GET
-		):void {
+		protected function api(method:String, callback:Function = null, params:* = null, requestMethod:String = URLRequestMethod.GET):void {
 			if (accessToken) {
 				if (params == null) { params = {}; }
 				if (params.oauth_token == null) { params.oauth_token = accessToken; }

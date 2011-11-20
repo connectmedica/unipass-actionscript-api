@@ -1,5 +1,6 @@
 package com.connectmedica.unipass.net {
 	import flash.net.URLRequest;
+	import flash.net.URLRequestMethod;
 	
 	public class UnipassRequest extends AbstractUnipassRequest {
 		
@@ -11,11 +12,7 @@ package com.connectmedica.unipass.net {
 		 * Makes a request to the Unipass API.
 		 *
 		 */
-		public function call(url:String,
-							 requestMethod:String = 'GET',
-							 callback:Function = null,
-							 values:* = null
-		):void {
+		public function call(url:String, requestMethod:String = URLRequestMethod.GET, callback:Function = null, values:* = null):void {
 			_url = url;
 			_requestMethod = requestMethod;
 			_callback = callback;

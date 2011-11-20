@@ -1,8 +1,9 @@
-package com.connectmedica {
+package com.connectmedica.unipass {
     import com.connectmedica.unipass.core.AbstractUnipass;
     import com.connectmedica.unipass.core.UnipassURLHelpers;
     import com.connectmedica.unipass.data.UnipassAuthResponse;
     
+    import flash.net.URLRequestMethod;
     import flash.system.Security;
     
     public class Unipass extends AbstractUnipass {
@@ -71,12 +72,8 @@ package com.connectmedica {
          * A valid Unipass access token. If you have a previously saved access token, you can pass it in here.
          *
          */
-        public static function init(clientId:String,
-                                    callback:Function = null,
-                                    options:Object = null,
-                                    accessToken:String = null
-        ):void {
-            getInstance().init(clientId, callback, options, accessToken);
+        public static function init(clientId:String, callback:Function = null, accessToken:String = null):void {
+            getInstance().init(clientId, callback, accessToken);
         }
         
 		/**
@@ -100,12 +97,12 @@ package com.connectmedica {
 		 * POST will send data to Unipass.
 		 *
 		 */
-		public static function api(method:String,
-								   callback:Function = null,
-								   params:* = null,
-								   requestMethod:String = 'GET'
-		):void {
+		public static function api(method:String, callback:Function = null, params:* = null, requestMethod:String = URLRequestMethod.GET):void {
 			getInstance().api(method, callback, params, requestMethod);
+		}
+		
+		public static function post(method:String, callback:Function, params:* = null):void {
+			api(method, callback, params, URLRequestMethod.POST);
 		}
 		
         // Protected methods ///////////////////////////////////////////////////////////////////////////////////////////
@@ -127,26 +124,21 @@ package com.connectmedica {
          * @private
          *
          */
-        protected function init(clientId:String,
-                                callback:Function = null,
-                                options:Object = null,
-                                accessToken:String = null
-        ):void {
-            
+        protected function init(clientId:String, callback:Function = null, accessToken:String = null):void {
             /*
             ExternalInterface.addCallback('handleJsEvent', handleJSEvent);
             ExternalInterface.addCallback('authResponseChange', handleAuthResponseChange);
             ExternalInterface.addCallback('logout', handleLogout);
             ExternalInterface.addCallback('uiResponse', handleUI);
             */
-            _initCallback = callback;
-            
+			
+            this._initCallback = callback;
             this.clientId = clientId;
             this.oauth2 = true;
             
-            if (options == null) { options = {};}
+            /*if (options == null) { options = {};}
             options.appId = clientId;
-            options.oauth = true;
+            options.oauth = true;*/
             
             //ExternalInterface.call('FBAS.init', JSON.encode(options));
             
@@ -155,9 +147,9 @@ package com.connectmedica {
                 authResponse.accessToken = accessToken;
             }
             
-            if (options.status !== false) {
+            /*if (options.status !== false) {
                 //getLoginStatus();
-            } else if (_initCallback != null) {
+            } else*/ if (_initCallback != null) {
                 _initCallback(authResponse, null);
                 _initCallback = null;
             }

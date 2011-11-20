@@ -1,5 +1,6 @@
-package com.connectmedica {
+package com.connectmedica.unipass {
     import com.connectmedica.unipass.core.AbstractUnipass;
+    import com.connectmedica.unipass.core.UnipassDisplay;
     import com.connectmedica.unipass.core.UnipassURLHelpers;
     import com.connectmedica.unipass.data.UnipassSession;
     import com.connectmedica.unipass.net.UnipassRequest;
@@ -47,24 +48,24 @@ package com.connectmedica {
             getInstance().manageSession = value;
         }
         
-        public static function login(callback:Function, stageRef:Stage, scope:String, webView:StageWebView = null, display:String = 'mobile'):void {
+        public static function login(callback:Function, stageRef:Stage, scope:String, webView:StageWebView = null, display:String = UnipassDisplay.MOBILE):void {
             getInstance().login(callback, stageRef, scope, webView, display);
         }
         
-        public static function logout(callBack:Function = null, appOrigin:String = null):void {
-            getInstance().logout(callBack, appOrigin);
+        public static function logout(callback:Function = null):void {
+            getInstance().logout(callback);
         }
         
         public static function api(method:String, callback:Function, params:* = null, requestMethod:String = URLRequestMethod.GET):void {
             getInstance().api(method, callback, params, requestMethod);
         }
         
+		public static function post(method:String, callback:Function, params:* = null):void {
+			api(method, callback, params, URLRequestMethod.POST);
+		}
+		
         public static function getRawResult(data:Object):Object {			
             return getInstance().getRawResult(data);
-        }
-        
-        public static function postData(method:String, callback:Function, params:* = null):void {
-            api(method, callback, params, URLRequestMethod.POST);
         }
         
         public static function getSession():UnipassSession {
@@ -118,7 +119,7 @@ package com.connectmedica {
             }
         }
         
-        protected function login(callback:Function, stageRef:Stage, scope:String, webView:StageWebView = null, display:String = 'mobile'):void {
+        protected function login(callback:Function, stageRef:Stage, scope:String, webView:StageWebView = null, display:String = UnipassDisplay.MOBILE):void {
             this.loginCallback = callback;
             this.stageRef = stageRef;
             
@@ -165,7 +166,7 @@ package com.connectmedica {
             verifyAccessToken();
         }
         
-        protected function logout(callback:Function = null, appOrigin:String = null):void {
+        protected function logout(callback:Function = null):void {
             this.logoutCallback = callback;
             
             // Clear cookie for mobile
