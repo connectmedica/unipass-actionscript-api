@@ -26,7 +26,7 @@ ActionScript 3 SDK for Unipass API
 3. Mobile Library 
 
    * Create new **Flex Library Project**
-   * Project name: `unipass-actionscript-api-mobile`
+   * Project name: `unipass-api-mobile`
    * Configuration: **Mobile library**
    * Add "unipass-actionscript-api" project to build path libraries.
      Ensure that its Link Type is set to **Merged into code**.
