@@ -1,13 +1,13 @@
-package com.connectmedica.unipass.windows {
-    import com.connectmedica.unipass.core.UnipassURLDefaults;
-    import com.connectmedica.unipass.core.UnipassURLHelpers;
-    import com.connectmedica.unipass.utils.UnipassDataUtils;
-    
+package unipass.mobile.windows {
     import flash.events.Event;
     import flash.events.LocationChangeEvent;
     import flash.media.StageWebView;
     import flash.net.URLRequest;
     import flash.net.URLRequestMethod;
+    
+    import unipass.core.UnipassDisplay;
+    import unipass.core.UnipassURLHelpers;
+    import unipass.utils.UnipassDataUtils;
     
     public class MobileLoginWindow {
         
@@ -22,25 +22,23 @@ package com.connectmedica.unipass.windows {
             super();
         }
         
-        public function open(clientId:String,
-                             webView:StageWebView,
-                             scope:String = null, 
-                             display:String = 'mobile'
-        ):void {
+        public function open(clientId:String, webView:StageWebView, scope:String = null, display:String = UnipassDisplay.MOBILE):void {
             this.webView = webView;
             
             loginRequest = new URLRequest();
             loginRequest.method = URLRequestMethod.GET;
             loginRequest.url = UnipassURLHelpers.authorizationURL({
                 response_type: 'token',
-                client_id: clientId, 
-                redirect_uri: UnipassURLHelpers.loginSuccessURL,
-                scope: scope,
-                display: display
+                client_id:     clientId, 
+                redirect_uri:  UnipassURLHelpers.loginSuccessURL,
+                scope:         scope,
+                display:       display
             });
             
             showWindow(loginRequest);
         }
+        
+        // Protected Methods ///////////////////////////////////////////////////////////////////////////////////////////
         
         protected function showWindow(req:URLRequest):void {
             webView.addEventListener(Event.COMPLETE, handleLocationChange, false, 0, true);

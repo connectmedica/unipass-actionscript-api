@@ -1,4 +1,4 @@
-package com.connectmedica.unipass.controls {
+package unipass.controls {
     import flash.display.Sprite;
     import flash.events.Event;
     import flash.text.TextField;

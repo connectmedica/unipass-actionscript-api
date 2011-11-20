@@ -1,21 +1,21 @@
-package com.connectmedica.unipass {
-    import com.connectmedica.unipass.core.AbstractUnipass;
-    import com.connectmedica.unipass.core.UnipassDisplay;
-    import com.connectmedica.unipass.core.UnipassURLHelpers;
-    import com.connectmedica.unipass.data.UnipassSession;
-    import com.connectmedica.unipass.net.UnipassRequest;
-    import com.connectmedica.unipass.utils.UnipassDataUtils;
-    import com.connectmedica.unipass.windows.MobileLoginWindow;
-    
+package unipass.mobile {
     import flash.display.Stage;
     import flash.media.StageWebView;
     import flash.net.SharedObject;
     import flash.net.URLRequestMethod;
     
-    public class UnipassMobile extends AbstractUnipass {
-        protected static const SO_NAME:String = 'com.connectmedica.UnipassMobile';
+    import unipass.core.AbstractUnipass;
+    import unipass.core.UnipassDisplay;
+    import unipass.core.UnipassURLHelpers;
+    import unipass.data.UnipassSession;
+    import unipass.mobile.windows.MobileLoginWindow;
+    import unipass.net.UnipassRequest;
+    import unipass.utils.UnipassDataUtils;
+    
+    public class Unipass extends AbstractUnipass {
+        protected static const SO_NAME:String = 'unipass.mobile.Unipass';
         
-        protected static var _instance:UnipassMobile;
+        protected static var _instance:Unipass;
         protected static var _canInit:Boolean = false;
         
         protected var _manageSession:Boolean = true;
@@ -28,11 +28,11 @@ package com.connectmedica.unipass {
         protected var webView:StageWebView;
         protected var stageRef:Stage;
         
-        public function UnipassMobile() {
+        public function Unipass() {
             super();
             
             if (_canInit == false) {
-                throw new Error('UnipassMobile is an singleton and cannot be instantiated.');
+                throw new Error('Unipass is an singleton and cannot be instantiated.');
             }
         }
         
@@ -60,10 +60,10 @@ package com.connectmedica.unipass {
             getInstance().api(method, callback, params, requestMethod);
         }
         
-		public static function post(method:String, callback:Function, params:* = null):void {
-			api(method, callback, params, URLRequestMethod.POST);
-		}
-		
+        public static function post(method:String, callback:Function, params:* = null):void {
+            api(method, callback, params, URLRequestMethod.POST);
+        }
+        
         public static function getRawResult(data:Object):Object {			
             return getInstance().getRawResult(data);
         }
@@ -74,10 +74,24 @@ package com.connectmedica.unipass {
         
         // Protected Methods ///////////////////////////////////////////////////////////////////////////////////////////
         
+        protected static function getInstance():Unipass {
+            if (_instance == null) {
+                _canInit = true;
+                _instance = new Unipass();
+                _canInit = false;
+            }
+            
+            return _instance;
+        }
+        
+        protected function set manageSession(value:Boolean):void {
+            _manageSession = value;
+        }
+        
         protected function init(clientId:String, callback:Function, accessToken:String = null):void {
             this.initCallback = callback;
             this.clientId = clientId;
-			
+            
             if (accessToken != null) {
                 session = new UnipassSession();
                 session.accessToken = accessToken;
@@ -140,10 +154,6 @@ package com.connectmedica.unipass {
             loginWindow.open(this.clientId, this.webView, scope, display);
         }
         
-        protected function set manageSession(value:Boolean):void {
-            _manageSession = value;
-        }
-        
         protected function handleLogin(result:Object, fail:Object):void {
             loginWindow.loginCallback = null;
             
@@ -195,20 +205,13 @@ package com.connectmedica.unipass {
             if (this.webView) {
                 try {
                     this.webView.dispose();
-                } catch (e:*) { }
+                } catch (e:*) {}
             }
+            
             this.webView = new StageWebView();
             this.webView.stage = this.stageRef;
+            
             return webView;
-        }
-        
-        protected static function getInstance():UnipassMobile {
-            if (_instance == null) {
-                _canInit = true;
-                _instance = new UnipassMobile();
-                _canInit = false;
-            }
-            return _instance;
         }
         
     }

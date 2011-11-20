@@ -1,4 +1,4 @@
-package com.connectmedica.unipass.net {
+package unipass.net {
 	import flash.net.URLRequest;
 	import flash.net.URLRequestMethod;
 	

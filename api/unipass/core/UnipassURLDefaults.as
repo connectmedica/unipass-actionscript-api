@@ -1,4 +1,4 @@
-package com.connectmedica.unipass.core {
+package unipass.core {
 	
 	/**
 	 * Constant class that stores all URLs used to communicate with Unipass.

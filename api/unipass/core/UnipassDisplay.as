@@ -1,4 +1,4 @@
-package com.connectmedica.unipass.core {
+package unipass.core {
 
 	/**
 	 * The UnipassDisplay class provides values that specify the way the Unipass dialogs are displayed.

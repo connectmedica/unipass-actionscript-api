@@ -1,4 +1,4 @@
-package com.connectmedica.unipass.utils {
+package unipass.utils {
 	import flash.net.URLVariables;
 	
 	public class UnipassDataUtils {

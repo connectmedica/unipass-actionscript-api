@@ -1,11 +1,11 @@
-package com.connectmedica.unipass.core {
-	import com.connectmedica.unipass.data.UnipassAuthResponse;
-	import com.connectmedica.unipass.data.UnipassSession;
-	import com.connectmedica.unipass.net.UnipassRequest;
-	import com.connectmedica.unipass.utils.IResultParser;
-	
+package unipass.core {
 	import flash.net.URLRequestMethod;
 	import flash.utils.Dictionary;
+	
+	import unipass.data.UnipassAuthResponse;
+	import unipass.data.UnipassSession;
+	import unipass.net.UnipassRequest;
+	import unipass.utils.IResultParser;
 
 	public class AbstractUnipass {
 		

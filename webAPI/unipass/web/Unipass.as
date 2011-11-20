@@ -1,10 +1,10 @@
-package com.connectmedica.unipass {
-    import com.connectmedica.unipass.core.AbstractUnipass;
-    import com.connectmedica.unipass.core.UnipassURLHelpers;
-    import com.connectmedica.unipass.data.UnipassAuthResponse;
-    
+package unipass.web {
     import flash.net.URLRequestMethod;
     import flash.system.Security;
+    
+    import unipass.core.AbstractUnipass;
+    import unipass.core.UnipassURLHelpers;
+    import unipass.data.UnipassAuthResponse;
     
     public class Unipass extends AbstractUnipass {
         /**
