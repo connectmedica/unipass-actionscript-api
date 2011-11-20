@@ -42,8 +42,8 @@ package com.connectmedica.unipass {
                 throw new Error('Unipass is an singleton and cannot be instantiated.');
             }
             
-			setSecurity();
-			
+            setSecurity();
+            
             //jsBridge = new UnipassJSBridge(); //create an instance
             
             //jsCallbacks = {};
@@ -52,7 +52,7 @@ package com.connectmedica.unipass {
         }
         
         // Public API //////////////////////////////////////////////////////////////////////////////////////////////////
-		
+        
         /**
          * Initializes this Unipass singleton with your Client ID using OAuth 2.0.
          * You must call this method first.
@@ -76,50 +76,50 @@ package com.connectmedica.unipass {
             getInstance().init(clientId, callback, accessToken);
         }
         
-		/**
-		 * Makes a new request on the Unipass API.
-		 *
-		 * @param method The method to call on the Unipass API.
-		 * For example, to load the user's profile data, pass: /me
-		 *
-		 * @param calllback Method that will be called when this request is complete
-		 * The handler must have the signature of callback(result:Object, fail:Object);
-		 * On success, result will be the object data returned from Unipass.
-		 * On fail, result will be null and fail will contain information about the error.
-		 *
-		 * @param params Any parameters to pass to Unipass.
-		 * For example, you can pass {name:'Some name', message:'Some message'};
-		 * 
-		 * @param requestMethod
-		 * The URLRequestMethod used to send values to Unipss.
-		 * The Unipass API follows correct Request method conventions.
-		 * GET will return data from Unipass.
-		 * POST will send data to Unipass.
-		 *
-		 */
-		public static function api(method:String, callback:Function = null, params:* = null, requestMethod:String = URLRequestMethod.GET):void {
-			getInstance().api(method, callback, params, requestMethod);
-		}
-		
-		public static function post(method:String, callback:Function, params:* = null):void {
-			api(method, callback, params, URLRequestMethod.POST);
-		}
-		
+        /**
+         * Makes a new request on the Unipass API.
+         *
+         * @param method The method to call on the Unipass API.
+         * For example, to load the user's profile data, pass: /me
+         *
+         * @param calllback Method that will be called when this request is complete
+         * The handler must have the signature of callback(result:Object, fail:Object);
+         * On success, result will be the object data returned from Unipass.
+         * On fail, result will be null and fail will contain information about the error.
+         *
+         * @param params Any parameters to pass to Unipass.
+         * For example, you can pass {name:'Some name', message:'Some message'};
+         * 
+         * @param requestMethod
+         * The URLRequestMethod used to send values to Unipss.
+         * The Unipass API follows correct Request method conventions.
+         * GET will return data from Unipass.
+         * POST will send data to Unipass.
+         *
+         */
+        public static function api(method:String, callback:Function = null, params:* = null, requestMethod:String = URLRequestMethod.GET):void {
+            getInstance().api(method, callback, params, requestMethod);
+        }
+        
+        public static function post(method:String, callback:Function, params:* = null):void {
+            api(method, callback, params, URLRequestMethod.POST);
+        }
+        
         // Protected methods ///////////////////////////////////////////////////////////////////////////////////////////
-		
-		/**
-		 * @private
-		 *
-		 */
-		protected static function getInstance():Unipass {
-			if (_instance == null) {
-				_canInit = true;
-				_instance = new Unipass();
-				_canInit = false;
-			}
-			return _instance;
-		}
-		
+        
+        /**
+         * @private
+         *
+         */
+        protected static function getInstance():Unipass {
+            if (_instance == null) {
+                _canInit = true;
+                _instance = new Unipass();
+                _canInit = false;
+            }
+            return _instance;
+        }
+        
         /**
          * @private
          *
@@ -131,7 +131,7 @@ package com.connectmedica.unipass {
             ExternalInterface.addCallback('logout', handleLogout);
             ExternalInterface.addCallback('uiResponse', handleUI);
             */
-			
+            
             this._initCallback = callback;
             this.clientId = clientId;
             this.oauth2 = true;
@@ -148,22 +148,22 @@ package com.connectmedica.unipass {
             }
             
             /*if (options.status !== false) {
-                //getLoginStatus();
+            //getLoginStatus();
             } else*/ if (_initCallback != null) {
                 _initCallback(authResponse, null);
                 _initCallback = null;
             }
         }
-		
-		/**
-		 * @private
-		 * 
-		 */
-		protected function setSecurity():void {
-			Security.allowDomain("*");
-			Security.allowInsecureDomain("*");
-			Security.loadPolicyFile(UnipassURLHelpers.unipassURL("/crossdomain.xml"));
-		}
+        
+        /**
+         * @private
+         * 
+         */
+        protected function setSecurity():void {
+            Security.allowDomain("*");
+            Security.allowInsecureDomain("*");
+            Security.loadPolicyFile(UnipassURLHelpers.unipassURL("/crossdomain.xml"));
+        }
         
     }
 }
