@@ -28,6 +28,10 @@ package com.connectmedica.unipass.core {
             return join(UnipassURLDefaults.UNIPASS_URL, UnipassURLDefaults.LOGIN_SUCCESS_PATH);
         }
 		
+		public static function get logoutURL():String {
+			return join(UnipassURLDefaults.UNIPASS_URL, UnipassURLDefaults.LOGOUT_PATH);
+		}
+		
 		// Protected Methods ///////////////////////////////////////////////////////////////////////////////////////////
 
 		/**
@@ -37,7 +41,7 @@ package com.connectmedica.unipass.core {
 		public static function join(...paths):String {
 			var path:String = paths[0];
 			
-			for(var i:uint = 1; i < paths.length; i++) {
+			for (var i:uint = 1; i < paths.length; i++) {
 				if (paths[i] == null || paths[i] == "") continue;
 				
 				var p:String = paths[i] as String;

@@ -37,7 +37,13 @@ package com.connectmedica.unipass.core {
 		 * For use in desktop/mobile (AIR) applications.
 		 *
 		 */
-		public static var LOGIN_SUCCESS_PATH:String = '/oauth2/login_success.html';
+		public static var LOGIN_SUCCESS_PATH:String = '/oauth2/login_success';
+		
+		/**
+		 * Path to destroy current user session and logout from Unipass.
+		 * 
+		 */
+		public static var LOGOUT_PATH:String = '/users/sign_out';
 		
 	}
 }

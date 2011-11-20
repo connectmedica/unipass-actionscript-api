@@ -1,5 +1,6 @@
 package com.connectmedica {
     import com.connectmedica.unipass.core.AbstractUnipass;
+    import com.connectmedica.unipass.core.UnipassURLHelpers;
     import com.connectmedica.unipass.data.UnipassSession;
     import com.connectmedica.unipass.net.UnipassRequest;
     import com.connectmedica.unipass.utils.UnipassDataUtils;
@@ -164,18 +165,14 @@ package com.connectmedica {
             verifyAccessToken();
         }
         
-        protected function logout(callback:Function=null, appOrigin:String=null):void {
+        protected function logout(callback:Function = null, appOrigin:String = null):void {
             this.logoutCallback = callback;
             
-            //clears cookie for mobile.
-            var params:Object = {};
-            params.confirm = 1;
-            params.next = appOrigin;
-            params.access_token = accessToken;
+            // Clear cookie for mobile
             var req:UnipassRequest = new UnipassRequest();
             
             openRequests[req] = handleLogout;
-            req.call("https://m.facebook.com/logout.php", "GET", handleRequestLoad, params);
+            req.call(UnipassURLHelpers.logoutURL, 'GET', handleRequestLoad);
             
             var so:SharedObject = SharedObject.getLocal(SO_NAME);
             so.clear();
