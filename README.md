@@ -11,7 +11,7 @@ ActionScript 3 SDK for Unipass API
    * Create new **Flex Library Project**
    * Project name: `unipass-actionscript-api`
    * Configuration: **Generic library**
-   * Main src folder: `api`
+   * Main source folder: `api`
 
 2. Web Library 
 
