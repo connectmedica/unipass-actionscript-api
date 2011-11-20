@@ -4,6 +4,7 @@ package com.connectmedica.unipass.core {
 	import com.connectmedica.unipass.net.UnipassRequest;
 	import com.connectmedica.unipass.utils.IResultParser;
 	
+	import flash.net.URLRequestMethod;
 	import flash.utils.Dictionary;
 
 	public class AbstractUnipass {
@@ -77,7 +78,7 @@ package com.connectmedica.unipass.core {
 		protected function api(method:String,
 							   callback:Function = null,
 							   params:* = null,
-							   requestMethod:String = 'GET'
+							   requestMethod:String = URLRequestMethod.GET
 		):void {
 			if (accessToken) {
 				if (params == null) { params = {}; }

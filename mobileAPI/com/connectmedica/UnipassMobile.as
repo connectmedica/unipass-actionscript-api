@@ -17,7 +17,7 @@ package com.connectmedica {
         protected static var _instance:UnipassMobile;
         protected static var _canInit:Boolean = false;
         
-        protected var _manageSession:Boolean = false;
+        protected var _manageSession:Boolean = true;
         protected var loginWindow:MobileLoginWindow;
         protected var clientId:String;
         protected var loginCallback:Function;
@@ -51,11 +51,11 @@ package com.connectmedica {
             getInstance().login(callback, stageRef, scope, webView, display);
         }
         
-        public static function logout(callBack:Function=null, appOrigin:String=null):void {
+        public static function logout(callBack:Function = null, appOrigin:String = null):void {
             getInstance().logout(callBack, appOrigin);
         }
         
-        public static function api(method:String, callback:Function, params:* = null, requestMethod:String = 'GET'):void {
+        public static function api(method:String, callback:Function, params:* = null, requestMethod:String = URLRequestMethod.GET):void {
             getInstance().api(method, callback, params, requestMethod);
         }
         
@@ -74,9 +74,9 @@ package com.connectmedica {
         // Protected Methods ///////////////////////////////////////////////////////////////////////////////////////////
         
         protected function init(clientId:String, callback:Function, accessToken:String = null):void {
-            initCallback = callback;
-            
+            this.initCallback = callback;
             this.clientId = clientId;
+			
             if (accessToken != null) {
                 session = new UnipassSession();
                 session.accessToken = accessToken;
@@ -172,7 +172,7 @@ package com.connectmedica {
             var req:UnipassRequest = new UnipassRequest();
             
             openRequests[req] = handleLogout;
-            req.call(UnipassURLHelpers.logoutURL, 'GET', handleRequestLoad);
+            req.call(UnipassURLHelpers.logoutURL, URLRequestMethod.GET, handleRequestLoad);
             
             var so:SharedObject = SharedObject.getLocal(SO_NAME);
             so.clear();
