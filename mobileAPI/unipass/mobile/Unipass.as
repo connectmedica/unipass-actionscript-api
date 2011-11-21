@@ -1,5 +1,6 @@
 package unipass.mobile {
     import flash.display.Stage;
+    import flash.geom.Rectangle;
     import flash.media.StageWebView;
     import flash.net.SharedObject;
     import flash.net.URLRequestMethod;
@@ -139,6 +140,7 @@ package unipass.mobile {
             
             if (!webView) {
                 this.webView = this.createWebView();
+                this.webView.viewPort = new Rectangle(0, 0, this.stageRef.stageWidth, this.stageRef.stageHeight);
             } else {
                 this.webView = webView;
                 this.webView.stage = this.stageRef;

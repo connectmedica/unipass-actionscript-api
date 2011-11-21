@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:ViewNavigatorApplication xmlns:fx="http://ns.adobe.com/mxml/2009"
+                            xmlns:s="library://ns.adobe.com/flex/spark"
+                            creationComplete="handleCreationComplete(event)"
+                            firstView="views.MainHomeView">
+    <fx:Style source="Main.css"/>
+    <fx:Script>
+        <![CDATA[
+            import mx.events.FlexEvent;
+            
+            import unipass.core.UnipassURLDefaults;
+            import unipass.mobile.Unipass;
+            
+            import views.MainHomeView;
+            
+            protected static const CLIENT_ID:String = "YOUR_UNIPASS_CLIENT_ID";
+            
+            protected function handleCreationComplete(event:FlexEvent):void {
+                // Optionally use test domain
+                // UnipassURLDefaults.UNIPASS_URL = "https://test.stworzonedlazdrowia.pl";
+                Unipass.init(CLIENT_ID, handleUnipassInit);
+            }
+            
+            protected function handleUnipassInit(result:Object, error:Object):void {
+                if (result) {
+                    // We are already signed in
+                    navigator.pushView(MainHomeView);
+                } else {
+                    // We are not signed in
+                    Unipass.login(handleLogin, this.stage, "");
+                }
+            }
+            
+            protected function handleLogin(result:Object, error:Object):void {
+                if (result) {
+                    navigator.pushView(MainHomeView);
+                } else {
+                }
+            }
+            
+        ]]>
+    </fx:Script>
+    <fx:Declarations>
+        <!-- Place non-visual elements (e.g., services, value objects) here -->
+    </fx:Declarations>
+</s:ViewNavigatorApplication>

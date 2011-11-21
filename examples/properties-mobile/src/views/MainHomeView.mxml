@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
+        xmlns:s="library://ns.adobe.com/flex/spark"
+        title="HomeView">
+    <fx:Script>
+        <![CDATA[
+            import mx.events.FlexEvent;
+            
+            import unipass.mobile.Unipass;
+            
+            protected function handleCreationComplete(event:FlexEvent):void {
+                Unipass.api("/me/properties/weight", handleWeightResponse);
+            }
+            
+            protected function handleSetWeightButtonClick(event:MouseEvent):void {
+                Unipass.post("/me/properties/weight", handleWeightResponse, {value: weightInput.text});
+            }
+            
+            protected function handleWeightResponse(result:Object, error:Object):void {
+                if (result) {
+                    weightLabel.text = result.value;
+                } else {
+                    weightLabel.text = "(none)";
+                }
+            }
+            
+        ]]>
+    </fx:Script>
+    <fx:Declarations>
+        <!-- Place non-visual elements (e.g., services, value objects) here -->
+    </fx:Declarations>
+    <s:Label x="10" y="10" text="Current weight value:"/>
+    <s:TextInput id="weightInput" x="10" y="48" width="620"
+                 creationComplete="handleCreationComplete(event)"/>
+    <s:Label id="weightLabel" x="317" y="10" width="313" text="weight"/>
+    <s:Button id="setWeightButton" x="377" y="122" label="Set new value" click="handleSetWeightButtonClick(event)"/>
+</s:View>

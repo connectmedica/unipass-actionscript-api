@@ -1,7 +1,8 @@
 # Flash Builder files
-src/
 bin/
+bin-debug/
 .settings/
 .actionScriptProperties
 .flexLibProperties
+.flexProperties
 .project
