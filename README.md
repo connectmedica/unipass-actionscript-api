@@ -8,9 +8,10 @@ ActionScript 3 SDK for Unipass API
 
 1. Flex Mobile AIR Application
 
+       ```actionscript
        import mx.events.FlexEvent;
        import unipass.mobile.Unipass;
-    
+       
        protected function onInit(event:FlexEvent):void {
            Unipass.init("YOUR_UNIPASS_CLIENT_ID", onUnipassInit);
        }
@@ -33,6 +34,7 @@ ActionScript 3 SDK for Unipass API
                }
            });
        }
+       ```
 
 ### Create workspace for building SWC libraries
 
