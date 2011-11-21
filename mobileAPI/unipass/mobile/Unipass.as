@@ -49,7 +49,7 @@ package unipass.mobile {
             getInstance().manageSession = value;
         }
         
-        public static function login(callback:Function, stageRef:Stage, scope:String, webView:StageWebView = null, display:String = UnipassDisplay.MOBILE):void {
+        public static function login(callback:Function, stageRef:Stage, scope:Array = null, webView:StageWebView = null, display:String = UnipassDisplay.MOBILE):void {
             getInstance().login(callback, stageRef, scope, webView, display);
         }
         
@@ -134,7 +134,7 @@ package unipass.mobile {
             }
         }
         
-        protected function login(callback:Function, stageRef:Stage, scope:String, webView:StageWebView = null, display:String = UnipassDisplay.MOBILE):void {
+        protected function login(callback:Function, stageRef:Stage, scope:Array /* of String */ = null, webView:StageWebView = null, display:String = UnipassDisplay.MOBILE):void {
             this.loginCallback = callback;
             this.stageRef = stageRef;
             

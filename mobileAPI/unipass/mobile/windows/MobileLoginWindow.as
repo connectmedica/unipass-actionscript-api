@@ -22,7 +22,7 @@ package unipass.mobile.windows {
             super();
         }
         
-        public function open(clientId:String, webView:StageWebView, scope:String = null, display:String = UnipassDisplay.MOBILE):void {
+        public function open(clientId:String, webView:StageWebView, scope:Array /* of String */ = null, display:String = UnipassDisplay.MOBILE):void {
             this.webView = webView;
             
             loginRequest = new URLRequest();
@@ -31,7 +31,7 @@ package unipass.mobile.windows {
                 response_type: 'token',
                 client_id:     clientId, 
                 redirect_uri:  UnipassURLHelpers.loginSuccessURL,
-                scope:         scope,
+                scope:         scope ? scope.join(" ") : "",
                 display:       display
             });
             

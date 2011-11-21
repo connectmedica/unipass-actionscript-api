@@ -27,7 +27,7 @@
                     navigator.pushView(MainHomeView);
                 } else {
                     // We are not signed in
-                    Unipass.login(handleLogin, this.stage, "");
+                    Unipass.login(handleLogin, this.stage);
                 }
             }
             
