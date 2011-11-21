@@ -8,30 +8,30 @@ ActionScript 3 SDK for Unipass API
 
 1. Flex Mobile AIR Application
 
-       ```actionscript
-       import mx.events.FlexEvent;
-       import unipass.mobile.Unipass;
-       
-       protected function init(event:FlexEvent):void {
-           Unipass.init("YOUR_UNIPASS_CLIENT_ID", function(session:Object, error:Object):void {
-               if (session) {
-                   // We are already signed in, current session is read from Shared Object
-                   fetchMe();
-               } else {
-                   // We are not signed in - display default Unipass login window
-                   Unipass.login(function(session:Object, error:Object):void {
-                       if (session) { fetchMe(); }
-                   }, this.stage);
-               }
-           });
-       }
+    ```actionscript
+    import mx.events.FlexEvent;
+    import unipass.mobile.Unipass;
     
-       protected function fetchMe():void {
-           Unipass.api("/me", function(me:Object, error:Object):void {
-               if (me) { /* do something with me! */ }
-           });
-       }
-       ```
+    protected function init(event:FlexEvent):void {
+        Unipass.init("YOUR_UNIPASS_CLIENT_ID", function(session:Object, error:Object):void {
+            if (session) {
+                // We are already signed in, current session is read from Shared Object
+                fetchMe();
+            } else {
+                // We are not signed in - display default Unipass login window
+                Unipass.login(function(session:Object, error:Object):void {
+                    if (session) { fetchMe(); }
+                }, this.stage);
+            }
+        });
+    }
+    
+    protected function fetchMe():void {
+        Unipass.api("/me", function(me:Object, error:Object):void {
+            if (me) { /* do something with me! */ }
+        });
+    }
+    ```
 
 ### Create workspace for building SWC libraries
 
