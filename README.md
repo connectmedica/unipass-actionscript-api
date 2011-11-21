@@ -27,8 +27,8 @@ ActionScript 3 SDK for Unipass API
        }
     
        protected function fetchMe():void {
-           Unipass.api("/me", function(result:Object, error:Object):void {
-               if (result) { /* do something with me! */ }
+           Unipass.api("/me", function(me:Object, error:Object):void {
+               if (me) { /* do something with me! */ }
            });
        }
        ```
