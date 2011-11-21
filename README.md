@@ -19,8 +19,8 @@ ActionScript 3 SDK for Unipass API
                    fetchMe();
                } else {
                    // We are not signed in - display default Unipass login window
-                   Unipass.login(function(result:Object, error:Object):void {
-                       if (result) { fetchMe(); }
+                   Unipass.login(function(session:Object, error:Object):void {
+                       if (session) { fetchMe(); }
                    }, this.stage);
                }
            });
