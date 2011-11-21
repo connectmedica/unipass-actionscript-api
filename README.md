@@ -13,19 +13,17 @@ ActionScript 3 SDK for Unipass API
        import unipass.mobile.Unipass;
        
        protected function init(event:FlexEvent):void {
-           Unipass.init("YOUR_UNIPASS_CLIENT_ID", onUnipassInit);
-       }
-    
-       protected function onUnipassInit(result:Object, error:Object):void {
-           if (result) {
-               // We are already signed in
-               fetchMe();
-           } else {
-               // We are not signed in - display default Unipass login window
-               Unipass.login(function(result:Object, error:Object):void {
-                   if (result) { fetchMe(); }
-               }, this.stage);
-           }
+           Unipass.init("YOUR_UNIPASS_CLIENT_ID", function(session:Object, error:Object):void {
+               if (session) {
+                   // We are already signed in, current session is read from Shared Object
+                   fetchMe();
+               } else {
+                   // We are not signed in - display default Unipass login window
+                   Unipass.login(function(result:Object, error:Object):void {
+                       if (result) { fetchMe(); }
+                   }, this.stage);
+               }
+           });
        }
     
        protected function fetchMe():void {
