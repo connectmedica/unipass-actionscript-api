@@ -12,26 +12,25 @@ ActionScript 3 SDK for Unipass API
        import mx.events.FlexEvent;
        import unipass.mobile.Unipass;
        
-       protected function onInit(event:FlexEvent):void {
+       protected function init(event:FlexEvent):void {
            Unipass.init("YOUR_UNIPASS_CLIENT_ID", onUnipassInit);
        }
     
        protected function onUnipassInit(result:Object, error:Object):void {
            if (result) {
                // We are already signed in
+               fetchMe();
            } else {
                // We are not signed in - display default Unipass login window
-               Unipass.login(onUnipassLogin, this.stage, "");
+               Unipass.login(function(result:Object, error:Object):void {
+                   if (result) { fetchMe(); }
+               }, this.stage, "");
            }
        }
     
-       protected function onUnipassLogin(result:Object, error:Object):void {
-           var me:Object;
-           
+       protected function fetchMe():void {
            Unipass.api("/me", function(result:Object, error:Object):void {
-               if (result) {
-                   me = result;
-               }
+               if (result) { /* do something with me! */ }
            });
        }
        ```
