@@ -6,3 +6,9 @@ bin-debug/
 .flexLibProperties
 .flexProperties
 .project
+
+# PHP projects
+config.php
+
+# System/IDE files
+.idea/
