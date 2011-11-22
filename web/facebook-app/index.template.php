@@ -54,7 +54,7 @@ if ($facebook_user) {
         $unipass_token = null;
     }
 } else {
-    $url = $facebook->getLoginUrl(array('scope' => $FACEBOOK_SCOPE, 'redirect_uri' => $FACEBOOK_APP_URL));
+    $url = $facebook->getLoginUrl(array('scope' => FACEBOOK_SCOPE, 'redirect_uri' => FACEBOOK_APP_URL));
     echo("<script type='text/javascript'>top.location.href = '$url';</script>");
 }
 
