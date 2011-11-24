@@ -1,4 +1,9 @@
-<?php require_once 'lib/connect.php'; ?>
+<?php
+
+require_once 'config.php';
+require_once 'lib/connect.php';
+
+?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!-- saved from url=(0014)about:internet -->

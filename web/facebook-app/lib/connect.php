@@ -1,6 +1,5 @@
 <?php
 
-require_once '../config.php';
 require_once 'facebook-sdk/facebook.php';
 require_once 'oauth2/GrantType/IGrantType.php';
 require_once 'oauth2/GrantType/ClientCredentials.php';
