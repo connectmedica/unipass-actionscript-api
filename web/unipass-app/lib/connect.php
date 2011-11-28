@@ -22,18 +22,20 @@ $unipass = new OAuth2\Client(UNIPASS_CLIENT_ID, UNIPASS_CLIENT_SECRET);
 $unipass->setAccessTokenType(OAuth2\Client::ACCESS_TOKEN_BEARER);
 $unipass->setAccessTokenParamName('oauth_token');
 
-if (!isset($_GET['code'])) {
-    $auth_url = $unipass->getAuthenticationUrl(UNIPASS_URL.UNIPASS_AUTH_ENDPOINT, REDIRECT_URI);
-    header('Location: '.$auth_url);
+function redirect(&$url) {
+    header('Location: '.$url);
     die('Redirect');
+}
+
+if (!isset($_GET['code'])) {
+    redirect($unipass->getAuthenticationUrl(UNIPASS_URL.UNIPASS_AUTH_ENDPOINT, REDIRECT_URI));
+
 } else {
     $params = array('code' => $_GET['code'], 'redirect_uri' => REDIRECT_URI);
     $response = $unipass->getAccessToken(UNIPASS_URL.UNIPASS_TOKEN_ENDPOINT, 'authorization_code', $params);
 
-    if ($response['result'] && array_key_exists('error', $response['result']) && $response['result']['error'] == 'invalid_grant') {
-        $auth_url = $unipass->getAuthenticationUrl(UNIPASS_URL.UNIPASS_AUTH_ENDPOINT, REDIRECT_URI);
-        header('Location: '.$auth_url);
-        die('Redirect');
+    if (isset($response['result']['error']) && $response['result']['error'] == 'invalid_grant') {
+        redirect($unipass->getAuthenticationUrl(UNIPASS_URL.UNIPASS_AUTH_ENDPOINT, REDIRECT_URI));
     } else {
         $unipass_token = $response['result']['access_token'];
         $unipass->setAccessToken($unipass_token);
