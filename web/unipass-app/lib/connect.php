@@ -29,6 +29,13 @@ if (!isset($_GET['code'])) {
 } else {
     $params = array('code' => $_GET['code'], 'redirect_uri' => REDIRECT_URI);
     $response = $unipass->getAccessToken(UNIPASS_URL.UNIPASS_TOKEN_ENDPOINT, 'authorization_code', $params);
-    $unipass_token = $response['result']['access_token'];
-    $unipass->setAccessToken($unipass_token);
+
+    if ($response['result'] && array_key_exists('error', $response['result']) && $response['result']['error'] == 'invalid_grant') {
+        $auth_url = $unipass->getAuthenticationUrl(UNIPASS_URL.UNIPASS_AUTH_ENDPOINT, REDIRECT_URI);
+        header('Location: '.$auth_url);
+        die('Redirect');
+    } else {
+        $unipass_token = $response['result']['access_token'];
+        $unipass->setAccessToken($unipass_token);
+    }
 }
