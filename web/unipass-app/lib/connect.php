@@ -22,7 +22,7 @@ $unipass = new OAuth2\Client(UNIPASS_CLIENT_ID, UNIPASS_CLIENT_SECRET);
 $unipass->setAccessTokenType(OAuth2\Client::ACCESS_TOKEN_BEARER);
 $unipass->setAccessTokenParamName('oauth_token');
 
-function redirect(&$url) {
+function redirect($url) {
     header('Location: '.$url);
     die('Redirect');
 }
