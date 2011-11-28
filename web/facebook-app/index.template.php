@@ -48,8 +48,8 @@ require_once 'lib/connect.php';
             // To use express install, set to playerProductInstall.swf, otherwise the empty string.
             var xiSwfUrlStr = "${expressInstallSwf}";
             var flashvars = {};
-            flashvars.facebookToken = "<?= $facebook->getAccessToken() ?>";
-            flashvars.unipassToken = "<?= $unipass_token ?>";
+            flashvars.facebookToken = "<?php echo $facebook->getAccessToken() ?>";
+            flashvars.unipassToken = "<?php echo $unipass_token ?>";
             var params = {};
             params.quality = "high";
             params.bgcolor = "${bgcolor}";
