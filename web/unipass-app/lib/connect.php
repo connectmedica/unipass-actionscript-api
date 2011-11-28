@@ -23,13 +23,12 @@ $unipass->setAccessTokenType(OAuth2\Client::ACCESS_TOKEN_BEARER);
 $unipass->setAccessTokenParamName('oauth_token');
 
 if (!isset($_GET['code'])) {
-    $auth_url = $client->getAuthenticationUrl(UNIPASS_URL.UNIPASS_AUTH_ENDPOINT, REDIRECT_URI);
+    $auth_url = $unipass->getAuthenticationUrl(UNIPASS_URL.UNIPASS_AUTH_ENDPOINT, REDIRECT_URI);
     header('Location: '.$auth_url);
     die('Redirect');
 } else {
     $params = array('code' => $_GET['code'], 'redirect_uri' => REDIRECT_URI);
-    $response = $client->getAccessToken(UNIPASS_URL.UNIPASS_TOKEN_ENDPOINT, 'authorization_code', $params);
-    parse_str($response['result'], $info);
-    $unipass_token = $info['access_token'];
+    $response = $unipass->getAccessToken(UNIPASS_URL.UNIPASS_TOKEN_ENDPOINT, 'authorization_code', $params);
+    $unipass_token = $response['result']['access_token'];
     $unipass->setAccessToken($unipass_token);
 }
