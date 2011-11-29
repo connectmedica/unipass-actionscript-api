@@ -28,8 +28,7 @@ function redirect($url) {
 }
 
 if (!isset($_GET['code'])) {
-    redirect($unipass->getAuthenticationUrl(UNIPASS_URL.UNIPASS_AUTH_ENDPOINT, REDIRECT_URI));
-
+    redirect($unipass->getAuthenticationUrl(UNIPASS_URL.UNIPASS_AUTH_ENDPOINT, REDIRECT_URI, array('display' => 'popup')));
 } else {
     $params = array('code' => $_GET['code'], 'redirect_uri' => REDIRECT_URI);
     $response = $unipass->getAccessToken(UNIPASS_URL.UNIPASS_TOKEN_ENDPOINT, 'authorization_code', $params);

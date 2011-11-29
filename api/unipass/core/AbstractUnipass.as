@@ -114,7 +114,7 @@ package unipass.core {
 				var data:Object = ('data' in target.data) ? target.data.data : target.data;
 				
 				resultHash[data] = target.data; //keeps a reference to the entire raw object Unipass returns (including paging, etc.)
-				if (data.hasOwnProperty("error_code")) {
+				if (data.hasOwnProperty("error")) {
 					resultCallback(null, data);
 				} else {
 					if (parserHash[target] is IResultParser) {
